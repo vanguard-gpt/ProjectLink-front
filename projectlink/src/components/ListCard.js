@@ -1,48 +1,103 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import moment from "moment";
 import { Trash2 } from "react-feather";
 import './ListCard.css';
-import Modal from '../page/boardList/BoardListModal'; // 모달 컴포넌트를 import 합니다.
+import Modal from '../page/boardList/BoardListModal';
+import Comment from '../page/comment/Comment';
+import CommentModule from '../page/comment/CommentModule';
 
 const ListCard = ({ card, step, handleDeleteCard }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const createdDate = card.created ? moment(card.created).format("YYYY년 MM월 DD일 HH시 MM분") : "";
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [comments, setComments] = useState([]);
+    const createdDate = card.created ? moment(card.created).format("YYYY년 MM월 DD일") : "";
+    const commentModuleRef = useRef(null);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
+    useEffect(() => {
+        const fetchComments = async () => {
+            if (commentModuleRef.current) {
+                try {
+                    const cardComments = await commentModuleRef.current.getCommentsByCardId(card.id);
+                    setComments(cardComments);
+                } catch (error) {
+                    console.error('Error fetching comments:', error);
+                }
+            }
+        };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+        if (isModalOpen) {
+            fetchComments();
+        }
+    }, [isModalOpen, card.id]);
 
-  return (
-    <>
-      <div className="list-card" onClick={handleOpenModal}>
-        <div className="list-card-header">
-          <h1 className="list-card-title">{card.title}</h1>
-          <button className="delete-card-button" onClick={(e) => { e.stopPropagation(); handleDeleteCard(card.id); }}>
-            <Trash2 size={16} />
-          </button>
-        </div>
-        <div className="list-card-footer">
-          <span className="list-card-date">{createdDate}</span>
-        </div>
-      </div>
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
 
-      {isModalOpen && (
-        <Modal onClose={handleCloseModal}>
-          <div className="modal-content">
-            <h1>{card.title}</h1>
-            <p>생성 일자: {createdDate}</p>
-            <h2>Comments</h2>
-            <textarea placeholder="Add a comment..." rows="4" className="comment-box"></textarea>
-            <button className="add-comment-button">Add Comment</button>
-          </div>
-        </Modal>
-      )}
-    </>
-  );
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCreateComment = async (cardId, newComment) => {
+        console.log("Before sending to backend:", newComment);
+        if (commentModuleRef.current) {
+            console.log("Sending comment data to backend:", newComment);
+            await commentModuleRef.current.createComment(cardId, newComment);
+            const cardComments = await commentModuleRef.current.getCommentsByCardId(cardId);
+            setComments(cardComments);
+        }
+    };
+
+    const handleUpdateComment = async (commentId, updatedComment) => {
+        console.log("Before updating to backend:", updatedComment);
+        if (commentModuleRef.current) {
+            console.log("Updating comment data to backend:", updatedComment);
+            await commentModuleRef.current.updateComment(commentId, updatedComment);
+            const cardComments = await commentModuleRef.current.getCommentsByCardId(card.id);
+            setComments(cardComments);
+        }
+    };
+
+    const handleDeleteComment = async (commentId) => {
+        console.log("Deleting comment with ID:", commentId);
+        if (commentModuleRef.current) {
+            await commentModuleRef.current.deleteComment(commentId);
+            const cardComments = await commentModuleRef.current.getCommentsByCardId(card.id);
+            setComments(cardComments);
+        }
+    };
+
+    return (
+        <>
+            <div className="list-card" onClick={handleOpenModal}>
+                <div className="list-card-header">
+                    <h1 className="list-card-title">{card.title}</h1>
+                    <button className="delete-card-button" onClick={(e) => { e.stopPropagation(); handleDeleteCard(card.id); }}>
+                        <Trash2 size={16} />
+                    </button>
+                </div>
+                <div className="list-card-footer">
+                    <span className="list-card-date">{createdDate}</span>
+                </div>
+            </div>
+
+            {isModalOpen && (
+                <Modal onClose={handleCloseModal}>
+                    <div className="modal-content">
+                        <h1>{card.title}</h1>
+                        <p>Created: {createdDate}</p>
+                        <CommentModule ref={commentModuleRef} />
+                        <Comment
+                            cardId={card.id}
+                            comments={comments}
+                            createComment={handleCreateComment}
+                            updateComment={handleUpdateComment}
+                            deleteComment={handleDeleteComment}
+                        />
+                    </div>
+                </Modal>
+            )}
+        </>
+    );
 };
 
 export default ListCard;
