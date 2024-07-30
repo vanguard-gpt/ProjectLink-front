@@ -68,7 +68,7 @@ export default function Signup() {
                     if (loginResponse.status === 200) {
                         // 로그인 성공 시 보드 페이지로 리디렉션
                         alert('회원가입 및 로그인 성공');
-                        window.location.href = `/${formState.username}/board`;
+                        window.location.href = `/${formState.username}/boards`;
                     } else {
                         alert('로그인에 실패했습니다. 다시 시도해주세요.');
                     }
