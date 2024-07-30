@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import axios from "axios";
 
@@ -15,7 +14,6 @@ export default function Signup() {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [emailErrorMessage, setEmailErrorMessage] = useState("");
-    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -68,8 +66,9 @@ export default function Signup() {
                 })
                 .then(loginResponse => {
                     if (loginResponse.status === 200) {
-                        alert('회원가입에 성공하셨습니다.');
-                        navigate(`/${formState.username}/boards`);
+                        // 로그인 성공 시 보드 페이지로 리디렉션
+                        alert('회원가입 및 로그인 성공');
+                        window.location.href = `/${formState.username}/board`;
                     } else {
                         alert('로그인에 실패했습니다. 다시 시도해주세요.');
                     }
@@ -84,7 +83,7 @@ export default function Signup() {
         })
         .catch(error => {
             console.error('회원가입 중 오류 발생:', error);
-            alert('이미 있는 아이디 또는 이메일 입니다. 다시 시도해주세요.');
+            alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
         });
     };
 
