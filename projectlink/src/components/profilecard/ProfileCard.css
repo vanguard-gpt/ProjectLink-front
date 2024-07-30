@@ -1,0 +1,73 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.profile-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.profile-card {
+    display: inline-grid;
+    color: white;
+    transition: transform 0.1s;
+    transform: perspective(1000px) rotateY(0deg);
+    transform-style: preserve-3d;
+    width: 400px;
+    height: 250px;
+    margin: 30px;
+}
+
+.profile-card:hover {
+    transform: perspective(800px) rotateY(180deg);
+}
+
+.profile-card > * {
+    grid-area: 1 / 1 / 1 / 1;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    backface-visibility: hidden;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    text-align: center; 
+}
+
+.profile-card-front {
+    display: flex;
+    background: linear-gradient(#222222, #444444); 
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+}
+
+.profile-card-back {
+    background: linear-gradient(#cccccc, #eeeeee);
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.profile-image {
+    width: 100px;
+    height: 120px;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-name {
+    font-size: 18px; 
+}
