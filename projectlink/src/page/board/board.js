@@ -1,7 +1,6 @@
-// src/page/board/Board.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useOutletContext } from 'react-router-dom';
-import BoardList from './BoardList';
+import BoardList from './BoardCardList';
 import './Board.css';
 import CreateBoardModal from '../../components/modal/CreateBoardModal';
 import { userApi, boardApi } from '../../api/Api';
@@ -91,6 +90,7 @@ const Board = () => {
             console.error('보드 좋아요 중 오류 발생:', error);
         }
     };
+
 
     const boardsToShow = showLikedBoards ? boards.filter(board => likedBoards.includes(board.id)) : boards;
 

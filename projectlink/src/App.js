@@ -8,7 +8,6 @@ import Signup from './page/login/Signup';
 import Board from './page/board/Board';
 import Layout from './components/layout/Layout';
 import BoardList from './page/boardList/BoardList'
-import BoardDetail from './page/boardDetail/BoardDetail';
 
 function App() {
   return (
@@ -21,9 +20,8 @@ function App() {
         <Route index element={<Board />} />
       </Route>
       <Route path="/:username/boards/:boardId" element={<Layout isDetail={true} />}>
-        <Route index element={<BoardDetail />} />
+        <Route index element={<BoardList />} />
       </Route>
-      <Route path="/boardlist" element={<BoardList/>} />
    </Routes>
   );
 }
