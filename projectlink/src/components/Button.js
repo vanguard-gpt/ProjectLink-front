@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './styles.css'; // 스타일을 위한 CSS 파일
+import './styles.css'; 
 
 const Button = ({ text, to}) => {
   return (

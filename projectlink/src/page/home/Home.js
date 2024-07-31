@@ -27,7 +27,7 @@ export default function Home() {
             </header>
 
             <div className="banner">
-            <h1 class="home-h1"><span class="bold-text">협업의 미래</span>, ProjectLink와 함께하세요!</h1>
+            <h1 className="home-h1"><span className="bold-text">협업의 미래</span>, ProjectLink와 함께하세요!</h1>
                 <p className="home-p">팀원들과의 원활한 소통, 프로젝트 관리, 그리고 생산성 극대화를 위한 최적의 솔루션! 지금 ProjectLink를 만나보세요.</p>
                 <ul className="home-ul">
                     <li>실시간 협업 도구: 모든 팀원들과 한 곳에서 소통하세요.</li>
