@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import moment from "moment";
-import { Trash2, Calendar } from "react-feather";
+import { Trash2, Calendar, MessageCircle } from "react-feather";
 import './ListCard.css';
 import Modal from '../page/boardList/BoardListModal';
 import Comment from '../page/comment/Comment';
@@ -80,6 +80,10 @@ const ListCard = ({ card, step, handleDeleteCard, updateCardInList }) => {
                 <div className="list-card-footer">
                     <Calendar size={16} />
                     <span className="list-card-date">{createdDate}</span>
+                    <span className="list-card-comments">
+                        <MessageCircle size = {16}/>
+                        {comments.length}
+                    </span> {/* 댓글 개수 표시 */}
                 </div>
                 <button className="delete-card-button" onClick={(e) => { e.stopPropagation(); handleDeleteCard(card.id); }}>
                     <Trash2 size={16} />
