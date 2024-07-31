@@ -1,8 +1,7 @@
 import { useState } from "react";
-import Card from "../../components/Card";
-import axios from "axios";
+import Card from "../../components/LoginForm";
 import { useNavigate, Link } from 'react-router-dom';
-import '../login/Login.css';
+import login from '../../api/authService'; 
 
 export default function Login() {
     const [formState, setFormState] = useState({

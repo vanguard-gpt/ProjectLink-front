@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import Card from "../../components/Card";
-import axios from "axios";
-import { Link } from 'react-router-dom';
 import Card from "../../components/LoginForm";
 import { userApi } from "../../api/Api"; 
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
     const [formState, setFormState] = useState({
