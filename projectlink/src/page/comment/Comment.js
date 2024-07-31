@@ -10,7 +10,7 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
     const handleCreateComment = async () => {
         if (newComment.trim()) {
             const commentData = { body: newComment };
-            console.log("Creating new comment with data:", commentData);
+            console.log("Creating new comment with data:", commentData);  // 로그 추가
             await createComment(cardId, commentData);
             setNewComment('');
         }
@@ -19,7 +19,7 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
     const handleEditComment = async (commentId) => {
         if (editCommentText.trim()) {
             const updatedComment = { body: editCommentText };
-            console.log("Updating comment with data:", updatedComment);
+            console.log("Updating comment with data:", updatedComment);  // 로그 추가
             await updateComment(commentId, updatedComment);
             setEditCommentId(null);
             setEditCommentText('');
@@ -27,7 +27,7 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
     };
 
     const handleDeleteComment = async (commentId) => {
-        console.log("Deleting comment with ID:", commentId);
+        console.log("Deleting comment with ID:", commentId);  // 로그 추가
         await deleteComment(commentId);
     };
 

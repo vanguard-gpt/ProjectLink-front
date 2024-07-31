@@ -1,4 +1,3 @@
-// src/page/boardList/BoardList.jsx
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import { useRef, useState, useEffect } from 'react';
@@ -10,14 +9,13 @@ import BoardListModule from './BoardListModule';
 const BoardList = () => {
     const boardListRef = useRef();
     const [newListTitle, setNewListTitle] = useState('');
-    const boardId = 'kjm996';
+    const boardId = 'kjm996'; //토근 문제와 보드 페이지 부재로 인한 boardID 하드코딩후 진행
 
     const handleCreateList = async () => {
         if (newListTitle.trim()) {
             try {
 
-                // await boardListRef.current.test();
-
+                // await boardListRef.current.test(); 테스트중
                 await boardListRef.current.createListInBoard({ title: newListTitle });
                 setNewListTitle(''); // Clear the input field after adding the list
             } catch (error) {

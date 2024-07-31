@@ -1,43 +1,49 @@
 /* src/components/ListCard.css */
 .list-card {
     background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+    padding: 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 8px;
+    position: relative;
   }
   
-  .list-card-header {
+  .list-card-label {
+    background-color: #e0f7fa; /* Example background color, adjust based on label type */
+    color: #00796b; /* Example text color, adjust based on label type */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    align-self: flex-start;
+}
+.list-card-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.list-card-footer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
-  
-  .list-card-title {
-    font-size: 16px;
-    margin: 0;
-    flex-grow: 1;
-  }
-  
-  .delete-card-button {
+    font-size: 12px;
+    color: #999;
+}
+
+.list-card-footer .list-card-date {
+    margin-left: 4px;
+}
+
+.delete-card-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
     background: none;
     border: none;
+    color: #333;
     cursor: pointer;
-    color: #ff4d4d;
-  }
-  
-  .list-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .list-card-date {
-    font-size: 12px;
-    color: #888;
-  }
-  
+    font-size: 16px;
+}

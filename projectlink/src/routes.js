@@ -14,7 +14,7 @@ const AppRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/boardlist/:boardId" element={<BoardList />} /> 
-                {/* URL 파라미터로 boardId 전달 */}
+                {/* URL 파라미터로 boardId 전달예정 */}
                 {/* 추가적인 라우트 설정 */}
             </Routes>
     );

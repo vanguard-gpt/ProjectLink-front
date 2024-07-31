@@ -1,4 +1,3 @@
-// src/page/boardList/BoardListModule.jsx
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { cardApi, boardListApi } from '../../api/api';
 import List from '../../components/List';
@@ -98,6 +97,14 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
         }
     };
 
+    const handleRenameList = async (listId, newTitle) => {
+        try {
+            await updateListTitle(listId, newTitle);
+        } catch (error) {
+            console.error('Error renaming list:', error);
+        }
+    };
+
     useImperativeHandle(ref, () => ({
         createCardInList,
         updateCardInList,
@@ -106,7 +113,8 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
         updateListTitle,
         deleteListFromBoard,
         handleDeleteList,
-        handleDeleteCard
+        handleDeleteCard,
+        handleRenameList
     }));
 
     if (loading) return <div>Loading...</div>;
@@ -121,6 +129,7 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
                     handleDeleteList={handleDeleteList}
                     handleCreateCard={createCardInList}
                     handleDeleteCard={handleDeleteCard}
+                    handleRenameList={handleRenameList}
                 />
             ))}
         </div>
