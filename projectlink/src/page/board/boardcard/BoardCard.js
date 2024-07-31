@@ -4,12 +4,17 @@ import './BoardCard.css';
 import { IoIosStarOutline } from "react-icons/io";
 import { IoMdStar } from "react-icons/io";
 
-const BoardCard = ({ board, onLikeToggle, liked }) => {
+const BoardCard = ({ board, onLikeToggle, liked, onViewBoard }) => {
     const navigate = useNavigate();
     const { username } = useParams();
 
-    const handleCardClick = () => {
-        navigate(`/${username}/boards/${board.id}`);
+    const handleCardClick = async () => {
+        try {
+            await onViewBoard(board);
+            navigate(`/${username}/boards/${board.id}`);
+        } catch (error) {
+            console.error('Error viewing board:', error);
+        }
     };
 
     const handleLikeClick = (e) => {
@@ -35,5 +40,4 @@ const BoardCard = ({ board, onLikeToggle, liked }) => {
 };
 
 export default BoardCard;
-
 

@@ -41,9 +41,10 @@ export const userApi = {
 
 export const boardApi = {
     getBoardById: (boardId) => instance.get(`/api/v1/boards/${boardId}`),
-    bookmarkBoard: (boardId, username) => instance.post(`/api/v1/boards/${boardId}`, { username }),
+    viewStateBoard: (boardId, username, order) => instance.post(`/api/v1/boards/${boardId}`, { username, order }),
     updateBoard: (boardId, updatedBoard) => instance.put(`/api/v1/boards/${boardId}`, updatedBoard),
     createBoard: (boardData) => instance.post(`/api/v1/boards`, boardData),
     deleteBoard: (boardId) => instance.delete(`/api/v1/boards/${boardId}`),
     getAllBoards: () => instance.get("/api/v1/boards"),
 };
+
