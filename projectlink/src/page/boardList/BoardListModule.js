@@ -56,7 +56,6 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
         try {
             const response = await boardListApi.createListInBoard(boardId, newList);
             console.log(response);
-            // setLists(prevLists => [...prevLists, response.data]);
             setLists(response.data.lists);
         } catch (error) {
             console.error(error);
@@ -65,10 +64,7 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
 
     const updateListTitle = async (listId, updatedTitle) => {
         try {
-            const requestBody = {
-                title: updatedTitle,
-            };
-            const response = await boardListApi.updateListTitle(listId, requestBody);
+            const response = await boardListApi.updateListTitle(listId, updatedTitle);
             setLists(prevLists => prevLists.map(list => (list.id === listId ? response.data : list)));
         } catch (error) {
             console.error(error);
@@ -100,9 +96,21 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
         }
     };
 
+    /*
+    상태가 반영이 안되었던 코드
+
     const handleRenameList = async (listId, newTitle) => {
         try {
             await updateListTitle(listId, newTitle);
+        } catch (error) {
+            console.error('Error renaming list:', error);
+        }
+    };*/
+
+    const handleRenameList = async (listId, newTitle) => {
+        try {
+            await updateListTitle(listId, newTitle);
+            setLists(prevLists => prevLists.map(list => (list.id === listId ? { ...list, title: newTitle } : list)));
         } catch (error) {
             console.error('Error renaming list:', error);
         }
@@ -127,13 +135,13 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
         <div className="board-lists">
             {lists.map((list, index) => (
                 <List
-                    key={`${list.id}-${index}`} // 고유한 key 값으로 수정
+                    key={`${list.id}-${index}`}
                     list={list}
                     handleDeleteList={handleDeleteList}
                     handleCreateCard={createCardInList}
                     handleDeleteCard={handleDeleteCard}
+                    handleRenameList={handleRenameList}
                     updateCardInList={updateCardInList}
-                    handleRenameList={updateListTitle}
                 />
             ))}
         </div>
