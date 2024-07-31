@@ -2,6 +2,7 @@ import { useState } from "react";
 import Card from "../../components/LoginForm";
 import { useNavigate, Link } from 'react-router-dom';
 import login from '../../api/authService'; 
+import './Login.css';
 
 export default function Login() {
     const [formState, setFormState] = useState({
