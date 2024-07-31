@@ -21,7 +21,7 @@ function App() {
         <Route index element={<Board />} />
       </Route>
       <Route path="/:username/boards/:boardId" element={<Layout isDetail={true} />}>
-        <Route index element={<BoardDetail />} />
+        <Route index element={<BoardList />} />
       </Route>
       <Route path="/boardlist" element={<BoardList/>} />
    </Routes>
