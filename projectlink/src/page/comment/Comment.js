@@ -10,7 +10,6 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
     const handleCreateComment = async () => {
         if (newComment.trim()) {
             const commentData = { body: newComment };
-            console.log("Creating new comment with data:", commentData);  // 로그 추가
             await createComment(cardId, commentData);
             setNewComment('');
         }
@@ -18,8 +17,7 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
 
     const handleEditComment = async (commentId) => {
         if (editCommentText.trim()) {
-            const updatedComment = { body: editCommentText };
-            console.log("Updating comment with data:", updatedComment);  // 로그 추가
+            const updatedComment = { body: editCommentText, modified: new Date() };
             await updateComment(commentId, updatedComment);
             setEditCommentId(null);
             setEditCommentText('');
@@ -27,30 +25,33 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
     };
 
     const handleDeleteComment = async (commentId) => {
-        console.log("Deleting comment with ID:", commentId);  // 로그 추가
         await deleteComment(commentId);
     };
 
     return (
         <div className="comment-section">
-            <div className="comment-section2">
-            <h2>Comments</h2>
-            <button className="add-comment-button" onClick={handleCreateComment}>Add Comment</button>
+            <div className="comment-input-container">
+                <textarea
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    placeholder="코멘트 추가..."
+                    rows="4"
+                    className="comment-box"
+                />
+                <button className="add-comment-button" onClick={handleCreateComment}>Add Comment</button>
             </div>
-            <textarea
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder="코멘트 추가..."
-                rows="4"
-                className="comment-box"
-            />
             {comments.map(comment => (
                 <div key={comment.id} className="comment">
                     <div className="comment-header">
                         <span className="comment-author">
                             {comment.author ? `${comment.author.lastName}` : 'Unknown'}
                         </span>
-                        <span className="comment-date">
+                        <div className="comment-actions">
+                            <button className="comment-button" onClick={() => { setEditCommentId(comment.id); setEditCommentText(comment.body); }}>Edit</button>
+                            <button className="comment-button" onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                        </div>
+                    </div>
+                    <div className="comment-content">
                         {editCommentId === comment.id ? (
                             <div className="comment-edit">
                                 <textarea
@@ -63,16 +64,11 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
                                 <button className="comment-button" onClick={() => setEditCommentId(null)}>Cancel</button>
                             </div>
                         ) : (
-                            <div className="comment-actions">
-                                <button className="comment-button" onClick={() => { setEditCommentId(comment.id); setEditCommentText(comment.body); }}>Edit</button>
-                                <button className="comment-button" onClick={() => handleDeleteComment(comment.id)}>Delete</button>
-                            </div>
+                            <p>{comment.body}</p>
                         )}
-                        </span>
                     </div>
-                    <div className="comment-content">
-                        <p>{comment.body}</p>
-                        {moment(comment.created).format('YYYY-MM-DD HH:mm')}
+                    <div className="comment-date">
+                        {comment.modified ? moment(comment.modified).format('YYYY-MM-DD HH:mm') : moment(comment.created).format('YYYY-MM-DD HH:mm')}
                     </div>
                 </div>
             ))}
@@ -81,4 +77,5 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
 };
 
 export default Comment;
+
 
