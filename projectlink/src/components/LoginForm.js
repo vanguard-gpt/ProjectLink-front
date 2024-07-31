@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.css';
-import logo from "../assets/logo.png";
+import logo_i from "../assets/logo_i.png";
 
 const Card = ({ placeholders, buttonText, linkText, linkUrl, isButtonDisabled }) => {
   return (
@@ -10,7 +10,7 @@ const Card = ({ placeholders, buttonText, linkText, linkUrl, isButtonDisabled })
       <div className="card">
         <div className="navbar">
           <Link to="/" className="nav-link">
-            <img src={logo} alt={"홈페이지로 가기"} style={{ width: '281px', height: '116px' }} />
+            <img src={logo_i} alt={"홈페이지로 가기"} style={{ width: '281px', height: '116px' }} />
           </Link>
         </div>
         {placeholders.map((placeholder, index) => (
@@ -32,9 +32,6 @@ const Card = ({ placeholders, buttonText, linkText, linkUrl, isButtonDisabled })
         <button  className={`card-btn${isButtonDisabled ? " button-disabled" : ""}`} type="submit" disabled={isButtonDisabled}>
           {buttonText}
         </button>
-        <div className="link">
-          <Link to={linkUrl}>{linkText}</Link>
-        </div>
       </div>
     </div>
   );

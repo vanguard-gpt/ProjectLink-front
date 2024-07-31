@@ -1,6 +1,7 @@
 import React from 'react';
 import "./ProfileCard.css";
 import sy from "../../assets/sy.png";
+import mj from "../../assets/mj.png";
 
 const ProfileCard = ({ name, image, role }) => {
     return (
@@ -21,7 +22,7 @@ const ProfileCardList = () => {
             <div className="profile-cards">
                 <ProfileCard name="김승연" image={sy} role="역할" />
                 <ProfileCard name="김시우" role="역할" />
-                <ProfileCard name="곽민정" role="역할" />
+                <ProfileCard name="곽민정" image={mj} role="역할" />
                 <ProfileCard name="권지민" role="역할" />
             </div>
         </div>
