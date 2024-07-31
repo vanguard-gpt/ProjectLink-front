@@ -1,4 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
+import Card from "../../components/Card";
+import axios from "axios";
+import { Link } from 'react-router-dom';
 import Card from "../../components/LoginForm";
 import { userApi } from "../../api/Api"; 
 
@@ -80,22 +83,27 @@ export default function Signup() {
     };
 
     const placeholders = [
-        { type: "text", text: "아이디", name: "username", value: formState.username, onChange: handleInputChange },
-        { type: "text", text: "이름을 입력하세요", name: "firstName", value: formState.firstName, onChange: handleInputChange },
-        { type: "text", text: "성을 입력하세요", name: "lastName", value: formState.lastName, onChange: handleInputChange },
-        { type: "email", text: "이메일을 입력하세요", name: "emailAddress", value: formState.emailAddress, onChange: handleInputChange, isValid: isEmailValid, errorMessage: emailErrorMessage },
-        { type: "password", text: "비밀번호", name: "password", value: formState.password, onChange: handleInputChange }
+        { type: "text", text: "ID", name: "username", value: formState.username, onChange: handleInputChange },
+        { type: "text", text: "FIRST NAME", name: "firstName", value: formState.firstName, onChange: handleInputChange },
+        { type: "text", text: "LAST NAME", name: "lastName", value: formState.lastName, onChange: handleInputChange },
+        { type: "email", text: "EMAIL ADDRESS", name: "emailAddress", value: formState.emailAddress, onChange: handleInputChange, isValid: isEmailValid, errorMessage: emailErrorMessage },
+        { type: "password", text: "PASSWORD", name: "password", value: formState.password, onChange: handleInputChange }
     ];
 
     return (
-        <form onSubmit={handleSubmit}>
-            <Card
-                placeholders={placeholders}
-                buttonText="회원가입"
-                linkText="이미 계정이 있으신가요? 로그인"
-                linkUrl="/login"
-                isButtonDisabled={isButtonDisabled}
-            />
-        </form>
+        <div className="login-container">
+            <div className="signup-link">
+                <Link to="/login">Already a Member?</Link>
+                <li className="nav-item">
+                    <Link to="/login" className="signup-btn">LOGIN</Link>
+                </li>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <Card
+                    placeholders={placeholders}
+                    buttonText="SIGN UP"
+                />
+            </form>
+        </div>
     );
 }
