@@ -65,7 +65,10 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
 
     const updateListTitle = async (listId, updatedTitle) => {
         try {
-            const response = await boardListApi.updateListTitle(listId, updatedTitle);
+            const requestBody = {
+                title: updatedTitle,
+            };
+            const response = await boardListApi.updateListTitle(listId, requestBody);
             setLists(prevLists => prevLists.map(list => (list.id === listId ? response.data : list)));
         } catch (error) {
             console.error(error);
@@ -129,7 +132,8 @@ const BoardListModule = forwardRef(({ boardId }, ref) => {
                     handleDeleteList={handleDeleteList}
                     handleCreateCard={createCardInList}
                     handleDeleteCard={handleDeleteCard}
-                    handleRenameList={handleRenameList}
+                    updateCardInList={updateCardInList}
+                    handleRenameList={updateListTitle}
                 />
             ))}
         </div>

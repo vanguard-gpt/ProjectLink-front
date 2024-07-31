@@ -4,7 +4,7 @@ import ListCard from './ListCard';
 import { cardApi } from '../api/Api';
 import ListMenu from './ListMenu';
 
-const List = ({ list, handleDeleteList, handleCreateCard, handleDeleteCard, handleRenameList }) => {
+const List = ({ list, handleDeleteList, handleCreateCard, handleDeleteCard, handleRenameList, updateCardInList}) => {
   const [cards, setCards] = useState([]);
   const [newCardTitle, setNewCardTitle] = useState('');
   const [isAddingCard, setIsAddingCard] = useState(false);
@@ -83,7 +83,7 @@ const List = ({ list, handleDeleteList, handleCreateCard, handleDeleteCard, hand
       <div className="card__content">
         {cards.length > 0 ? (
           cards.map(card => (
-            <ListCard key={card.id} card={card} step={list.title} handleDeleteCard={handleCardDelete} />
+            <ListCard key={card.id} card={card} step={list.title} handleDeleteCard={handleCardDelete} updateCardInList={updateCardInList}/>
           ))
         ) : (
           <p>No cards in this list</p>

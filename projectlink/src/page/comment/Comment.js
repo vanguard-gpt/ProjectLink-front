@@ -33,19 +33,24 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
 
     return (
         <div className="comment-section">
+            <div className="comment-section2">
             <h2>Comments</h2>
+            <button className="add-comment-button" onClick={handleCreateComment}>Add Comment</button>
+            </div>
+            <textarea
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder="코멘트 추가..."
+                rows="4"
+                className="comment-box"
+            />
             {comments.map(comment => (
                 <div key={comment.id} className="comment">
                     <div className="comment-header">
                         <span className="comment-author">
-                            {comment.author ? `${comment.author.firstName} ${comment.author.lastName}` : 'Unknown'}
+                            {comment.author ? `${comment.author.lastName}` : 'Unknown'}
                         </span>
                         <span className="comment-date">
-                            {moment(comment.created).format('YYYY-MM-DD HH:mm')}
-                        </span>
-                    </div>
-                    <div className="comment-content">
-                        <p>{comment.body}</p>
                         {editCommentId === comment.id ? (
                             <div className="comment-edit">
                                 <textarea
@@ -63,17 +68,14 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
                                 <button className="comment-button" onClick={() => handleDeleteComment(comment.id)}>Delete</button>
                             </div>
                         )}
+                        </span>
+                    </div>
+                    <div className="comment-content">
+                        <p>{comment.body}</p>
+                        {moment(comment.created).format('YYYY-MM-DD HH:mm')}
                     </div>
                 </div>
             ))}
-            <textarea
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Add a comment..."
-                rows="4"
-                className="comment-box"
-            />
-            <button className="add-comment-button" onClick={handleCreateComment}>Add Comment</button>
         </div>
     );
 };

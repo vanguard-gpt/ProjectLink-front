@@ -2,6 +2,11 @@
     margin-top: 20px;
 }
 
+.comment-section2 {
+    display: flex;
+    justify-content: space-between;
+}
+
 .comment {
     margin-bottom: 15px;
     border-bottom: 1px solid #ccc;
