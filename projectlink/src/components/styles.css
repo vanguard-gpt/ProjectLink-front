@@ -2,7 +2,7 @@
     background-color: white;
     color: #222222;
     border: none;
-    padding: 15px 30px;
+    padding: 10px 20px;
     border-radius: 8px;
     text-decoration: none;
     text-align: center;
@@ -82,7 +82,7 @@
 input {
     padding: 16px;
     font-size: 16px;
-    border: 3px solid #A3A3A3;
+    border: 1px solid #A3A3A3;
     border-radius: 4px;
     width: 100%;
     max-width: 300px;
