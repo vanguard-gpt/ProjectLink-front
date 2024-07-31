@@ -91,8 +91,10 @@ const ListCard = ({ card, step, handleDeleteCard, updateCardInList }) => {
                     <div className="modal-content">
                         <h1>{card.title}</h1>
                         <p>Created: {createdDate}</p>
-                        <p>내용: {card.description}</p>
-                        <button onClick={handleSaveDescription} className="save-description-button">Save</button>
+                        <div className="description-top">
+                            <span className="description-font">Description {card.description}</span>
+                            <button onClick={handleSaveDescription} className="save-description-button">Save</button>
+                        </div>
                         {isEditingDescription ? (
                             <>
                                 <textarea
@@ -102,7 +104,7 @@ const ListCard = ({ card, step, handleDeleteCard, updateCardInList }) => {
                                 />
                             </>
                         ) : (
-                            <p onClick={() => setIsEditingDescription(true)}>{description || "내용을 입력하세요"}</p>
+                            <p className="description-text" onClick={() => setIsEditingDescription(true)}>{description || "Add a more detailed description..."}</p>
                         )}
                         <CommentModule ref={commentModuleRef} />
                         <Comment

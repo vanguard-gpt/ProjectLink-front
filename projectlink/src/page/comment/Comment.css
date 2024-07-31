@@ -1,26 +1,79 @@
+/* comment 전체*/
 .comment-section {
-    margin-top: 20px;
+    margin: 20px 0px;
 }
 
-.comment-section2 {
+/* comment 추가*/
+.comment-input-container {
+    margin-bottom: 30px;
+}
+
+.comment-font {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.comment-top {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.comment {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+/* 버튼 */
+.comment-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.add-comment-button, .comment-button {
+    background-color: #888888;
+    color: #F1F2F4;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 0px;
+}
+
+.add-comment-button:hover {
+    background-color: #222222;
+    color: #ffffff;
+}
+
+.comment-icon {
+    width: 20px;
+    height: 240x;
+    cursor: pointer;
+    margin: 0 5px;
 }
 
 .comment-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .comment-author {
     font-weight: bold;
+}
+
+.comment-box {
+    width: 100%;
+    margin: 0px;
+    background-color: #F1F2F4;
+    box-sizing: border-box;
+}
+
+.comment-content p {
+    margin-top: 6px;
+}
+
+.comment-actions1 {
+    display: flex;
+    gap: 10px;
+    margin: 6px 0px;
+    align-items: flex-end; 
+    justify-content: flex-end;
 }
 
 .comment-date {
@@ -28,31 +81,17 @@
     color: #888;
 }
 
-.comment-content {
-    margin-bottom: 5px;
+/* 선 */
+.comment {
+    border-bottom: 1px solid #878787;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.comment-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.comment-box {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.add-comment-button,
-.comment-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.add-comment-button:hover,
-.comment-button:hover {
-    background-color: #0056b3;
+/* placeholder (Add a comments...) */
+.comment-box::placeholder {
+    font-weight: 550;
+    font-size: 17px;
+    color: black;
+    font-style: inherit;
 }

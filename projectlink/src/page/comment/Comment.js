@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import './Comment.css';
+import editIcon from '../../assets/edit_icon.png';
+import deleteIcon from '../../assets/delete_icon.png';
 
 const Comment = ({ cardId, comments = [], createComment, updateComment, deleteComment }) => {
     const [newComment, setNewComment] = useState('');
@@ -31,14 +33,17 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
     return (
         <div className="comment-section">
             <div className="comment-input-container">
+            <div className='comment-top'>
+                <span className='comment-font'>Comments</span>
+                <button className="add-comment-button" onClick={handleCreateComment}>Add Comment</button>
+            </div>
                 <textarea
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
-                    placeholder="코멘트 추가..."
+                    placeholder="Add a comments..."
                     rows="4"
                     className="comment-box"
                 />
-                <button className="add-comment-button" onClick={handleCreateComment}>Add Comment</button>
             </div>
             {comments.map(comment => (
                 <div key={comment.id} className="comment">
@@ -47,8 +52,8 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
                             {comment.author ? `${comment.author.lastName}` : 'Unknown'}
                         </span>
                         <div className="comment-actions">
-                            <button className="comment-button" onClick={() => { setEditCommentId(comment.id); setEditCommentText(comment.body); }}>Edit</button>
-                            <button className="comment-button" onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                            <img src={editIcon} className="comment-icon" onClick={() => { setEditCommentId(comment.id); setEditCommentText(comment.body); }} />
+                            <img src={deleteIcon} className="comment-icon" onClick={() => handleDeleteComment(comment.id)} />
                         </div>
                     </div>
                     <div className="comment-content">
@@ -60,8 +65,10 @@ const Comment = ({ cardId, comments = [], createComment, updateComment, deleteCo
                                     rows="2"
                                     className="comment-box"
                                 />
-                                <button className="comment-button" onClick={() => handleEditComment(comment.id)}>Update</button>
-                                <button className="comment-button" onClick={() => setEditCommentId(null)}>Cancel</button>
+                                <div className="comment-actions1">
+                                    <button className="comment-button" onClick={() => handleEditComment(comment.id)}>Update</button>
+                                    <button className="comment-button" onClick={() => setEditCommentId(null)}>Cancel</button>
+                                </div>
                             </div>
                         ) : (
                             <p>{comment.body}</p>
