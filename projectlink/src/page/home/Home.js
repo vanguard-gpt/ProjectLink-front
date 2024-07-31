@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Home.css";
 import logo from "../../assets/logo.png";
-import "../styles.css";
 import "../../components/Button.css";
 import Button from '../../components/Button';
 import { ProfileCardList } from "../../components/profilecard/ProfileCard";
