@@ -1,0 +1,69 @@
+.list-container {
+    background-color: #f4f5f7;
+    border-radius: 18px;
+    width: 300px;
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: top;
+    box-shadow:  5px 5px 10px #bbbbbb,
+             -5px -5px 10px #d3d3d3;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #f7f7f7;
+  }
+
+  .list-header h2 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .delete-list-button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .card__content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-card-button {
+    background: none;
+    border: none;
+    color: #0079bf;
+    cursor: pointer;
+    text-align: left;
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  .add-card-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-card-input {
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .add-card-submit {
+    background-color: #5aac44;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
