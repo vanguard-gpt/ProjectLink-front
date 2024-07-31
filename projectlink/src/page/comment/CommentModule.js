@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import { cardApi, commentApi } from '../../api/api';
+import { cardApi, commentApi } from '../../api/Api';
 
 const CommentModule = forwardRef((props, ref) => {
     const [comments, setComments] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import { cardApi, boardListApi } from '../../api/api';
+import { cardApi, boardListApi } from '../../api/Api';
 import List from '../../components/List';
 
 const BoardListModule = forwardRef(({ boardId }, ref) => {

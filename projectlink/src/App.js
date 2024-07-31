@@ -25,7 +25,6 @@ function App() {
       </Route>
       <Route path="/boardlist" element={<BoardList/>} />
    </Routes>
-   </>
   );
 }
 
