@@ -32,7 +32,6 @@ const BoardList = () => {
             try {
                 await boardListRef.current.createListInBoard({ title: newListTitle });
                 setNewListTitle(''); // 입력 필드 초기화
-                boardListRef.current.setIsAddingList(false); // 리스트 추가 후 다시 + 버튼으로 돌아가기
             } catch (error) {
                 console.error('Error creating list:', error);
             }
@@ -42,16 +41,19 @@ const BoardList = () => {
     return (
         <div className="board-list-content">
             <div className='board-list-header'>
-                <h1>{board.boardName}</h1>
+            <h1>{board.boardName}</h1>
+                <input
+                    className="board-list-input"
+                    type="text"
+                    value={newListTitle}
+                    onChange={(e) => setNewListTitle(e.target.value)}
+                    placeholder="New list title"
+                />
+                <button onClick={handleCreateList}>Add List</button>
             </div>
-            <BoardListModule
-                ref={boardListRef}
-                boardId={boardId}
-                onCreateList={{ newListTitle, setNewListTitle, handleCreateList }}
-            />
+            <BoardListModule ref={boardListRef} boardId={boardId} />
         </div>
     );
 };
 
 export default BoardList;
-
