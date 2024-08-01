@@ -56,14 +56,29 @@
     padding: 8px;
     margin-bottom: 8px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px !important;
   }
   
   .add-card-submit {
-    background-color: #5aac44;
     color: white;
     border: none;
     padding: 8px;
     border-radius: 4px;
     cursor: pointer;
   }
+
+  .add-list-input-button {
+    background-color: #888888;
+    color: #F1F2F4;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 0px;
+    width: 100%;
+}
+
+.add-list-input-button:hover {
+    background-color: #222222;
+    color: #ffffff;
+}

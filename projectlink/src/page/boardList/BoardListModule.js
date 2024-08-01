@@ -2,6 +2,7 @@ import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'rea
 import { cardApi, boardListApi } from '../../api/api';
 import { Plus } from 'react-feather';
 import List from '../../components/List';
+import '../../components/List.css';
 
 const BoardListModule = forwardRef(({ boardId, onCreateList }, ref) => {
     const [lists, setLists] = useState([]);
@@ -146,7 +147,7 @@ const BoardListModule = forwardRef(({ boardId, onCreateList }, ref) => {
                             onChange={(e) => onCreateList.setNewListTitle(e.target.value)}
                             placeholder="New list title"
                         />
-                        <button onClick={onCreateList.handleCreateList}>Add List</button>
+                        <button className="add-list-input-button" onClick={onCreateList.handleCreateList}>Add List</button>
                     </>
                 ) : (
                     <button className="add-list-button" onClick={() => setIsAddingList(true)}>

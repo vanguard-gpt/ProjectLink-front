@@ -28,6 +28,10 @@
     color: #0079bf;
 }
 
+.add-list-input-button {
+    
+}
+
 .add-list-input-container {
     display: flex;
     flex-direction: column;

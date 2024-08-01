@@ -96,7 +96,7 @@ const List = ({ list, handleDeleteList, handleCreateCard, handleDeleteCard, hand
               type="text"
               value={newCardTitle}
               onChange={(e) => setNewCardTitle(e.target.value)}
-              placeholder="이름을 입력하세요"
+              placeholder="Enter a name for this card..."
               className="add-card-input"
             />
             <button onClick={handleAddCard} className="add-card-submit">
