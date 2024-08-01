@@ -1,36 +1,31 @@
-.app {
+.board-lists {
     display: flex;
-    height: 100vh;
-    width: 100vw;
+    align-items: flex-start;
 }
 
-.main-layout {
-    display: flex;
-    width: 100%;
-}
-
-.aside {
-    min-width: 250px;
-    background-color: #f4f4f4;
-}
-
-.content {
-    flex-grow: 1;
+.add-list-container {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    margin-left: 16px;
 }
 
-.navbar {
-    background-color: #f4f4f4;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.add-list-input {
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.main-content {
-    flex-grow: 1;
-    padding: 1rem;
+.add-list-button {
+    background-color: #f4f5f7;
+    border-radius: 18px;
+    width: 300px;
+    box-shadow:  5px 5px 10px #bbbbbb,
+             -5px -5px 10px #d3d3d3;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
 }
 
 .board-name-input {

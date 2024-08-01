@@ -7,9 +7,9 @@ const Card = ({ placeholders, buttonText, linkText, linkUrl, isButtonDisabled })
   return (
     <div className="card-body">
       <div className="card">
-        <div className="navbar">
+        <div className="login-navbar">
           <Link to="/" className="nav-link">
-            <img src={logo_i} alt={"홈페이지로 가기"} style={{ width: '281px', height: '116px' }} />
+            <img src={logo_i} alt={"홈페이지로 가기"} />
           </Link>
         </div>
         {placeholders.map((placeholder, index) => (
