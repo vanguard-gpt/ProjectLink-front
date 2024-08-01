@@ -37,6 +37,11 @@
     margin-left: 4px;
 }
 
+.list-card-comments {
+    display: flex;
+    margin-left: auto;
+}
+
 .delete-card-button {
     position: absolute;
     top: 8px;
