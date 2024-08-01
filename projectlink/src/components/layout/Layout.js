@@ -34,7 +34,7 @@ const Header = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
                 <div onClick={toggleLogout} className="profile-circle">
                     {username.charAt(0).toUpperCase()}
                 </div>
-                {showLogout && <button onClick={handleLogOut} className="logout-button">로그아웃</button>}
+                {showLogout && <button onClick={handleLogOut} className="logout-button">LOGOUT</button>}
             </div>
         </header>
     );
@@ -62,8 +62,8 @@ const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
             {isDetail ? (
                 <div>
-                    <button onClick={() => handleButtonClick('deleteBoard')}>보드 삭제</button>
-                    <button onClick={() => handleButtonClick('navigateToList')}>리스트 화면으로</button>
+                    <button onClick={() => handleButtonClick('deleteBoard')}>Delete Board</button>
+                    <button onClick={() => handleButtonClick('navigateToList')}>List View</button>
                 </div>
             ) : (
                 <div>
@@ -71,19 +71,19 @@ const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal
                         className={activeButton === 'allBoards' ? 'active' : ''}
                         onClick={() => handleButtonClick('allBoards')}
                     >
-                        모든 보드 보기
+                        All Boards
                     </button>
                     <button
                         className={activeButton === 'likedBoards' ? 'active' : ''}
                         onClick={() => handleButtonClick('likedBoards')}
                     >
-                        북마크한 보드
+                        Bookmark List
                     </button>
                     <button
                         className={activeButton === 'createBoard' ? 'active' : ''}
                         onClick={() => handleButtonClick('createBoard')}
                     >
-                        보드 생성
+                        Create Board
                     </button>
                 </div>
             )}

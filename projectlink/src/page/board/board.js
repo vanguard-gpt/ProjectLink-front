@@ -145,7 +145,7 @@ const Board = () => {
             <div className="board-content">
             {showAllBoards && !showLikedBoards && (
                     <>
-                        <h2>최근 리스트</h2>
+                        <h2>Recent List</h2>
                         <BoardList
                             boards={getRecentBoards()}
                             onLikeToggle={handleLikeToggle}
@@ -156,7 +156,7 @@ const Board = () => {
                 )}
                 {showAllBoards && (
                     <>
-                        <h2>모든 리스트</h2>
+                        <h2>All List</h2>
                         <BoardList
                             boards={boards}
                             onLikeToggle={handleLikeToggle}
@@ -167,7 +167,7 @@ const Board = () => {
                 )}
                 {showLikedBoards && (
                     <>
-                        <h2>북마크 리스트</h2>
+                        <h2>Bookmark List</h2>
                         <BoardList
                             boards={getLikedBoards()}
                             onLikeToggle={handleLikeToggle}
