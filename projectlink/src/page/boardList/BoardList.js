@@ -11,6 +11,9 @@ const BoardList = () => {
     const [board, setBoard] = useState(null);
     const [boardName, setBoardName] = useState('');
     const [isEditing, setIsEditing] = useState(false);
+    const removeQuotes = (str) => {
+        return str.replace(/['"]/g, '');
+    };
 
     useEffect(() => {
         const fetchBoard = async () => {
@@ -34,7 +37,7 @@ const BoardList = () => {
         if (newListTitle.trim()) {
             try {
                 await boardListRef.current.createListInBoard({ title: newListTitle });
-                setNewListTitle(''); 
+                setNewListTitle('');
             } catch (error) {
                 console.error('Error creating list:', error);
             }
@@ -49,41 +52,47 @@ const BoardList = () => {
         try {
             await boardApi.updateBoard(boardId, boardName);
             setIsEditing(false);
-        
         } catch (error) {
             console.error('Failed to update board name', error);
-           
+        }
+    };
+
+    const handleBoardNameDoubleClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSaveBoardName();
         }
     };
 
     return (
         <div className="board-list-content">
             <div className='board-list-header'>
-                <h1>
+                <h1 onDoubleClick={handleBoardNameDoubleClick}>
                     {isEditing ? (
                         <input
+                            className='board-name-input'
                             type="text"
-                            value={boardName}
+                            value={removeQuotes(boardName)}
                             onChange={handleBoardNameChange}
+                            onKeyDown={handleKeyDown}
                         />
                     ) : (
-                        boardName
+                        removeQuotes(boardName)
                     )}
                 </h1>
-                {isEditing ? (
-                    <button onClick={handleSaveBoardName}>Save</button>
-                ) : (
-                    <button onClick={() => setIsEditing(true)}>Edit Name</button>
-                )}
-                <input
-                    className="board-list-input"
-                    type="text"
-                    value={newListTitle}
-                    onChange={(e) => setNewListTitle(e.target.value)}
-                    placeholder="New list title"
-                />
-                <button onClick={handleCreateList}>Add List</button>
+                {isEditing}
             </div>
+            <input
+                className="board-list-input"
+                type="text"
+                value={newListTitle}
+                onChange={(e) => setNewListTitle(e.target.value)}
+                placeholder="New list title"
+            />
+            <button onClick={handleCreateList}>Add List</button>
             <BoardListModule ref={boardListRef} boardId={boardId} />
         </div>
     );
