@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
 import './Layout.css';
 import logo from '../../assets/logo.png';
@@ -26,9 +26,9 @@ const Header = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
         <header className="board-header">
             <div className="menu">
                 <FiAlignJustify size={30} color="white" onClick={toggleSidebar} />
-                <Link to={`/${username}/boards`} className="logo-img">
+                <div className="logo-img" onClick={handleLogOut}>
                     <img src={logo} alt="Home" />
-                </Link>
+                </div>
             </div>
             <div className="profile-container">
                 <div onClick={toggleLogout} className="profile-circle">
