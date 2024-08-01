@@ -57,11 +57,13 @@ const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal
             navigateToList();
         }
     };
+    
 
     return (
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
             {isDetail ? (
                 <div>
+
                     <button onClick={() => handleButtonClick('deleteBoard')}>Delete Board</button>
                     <button onClick={() => handleButtonClick('navigateToList')}>List View</button>
                 </div>
@@ -100,13 +102,16 @@ const Layout = ({ isDetail = false }) => {
     const navigate = useNavigate();
 
     const handleDeleteBoard = async (boardId) => {
-        try {
-            console.log(`Deleting board with id: ${boardId}`);
-            const response = await boardApi.deleteBoard(boardId);
-            console.log('Board deleted:', response);
-            navigate(`/${username}/boards`); 
-        } catch (error) {
-            console.error('Failed to delete board:', error);
+        const confirmDelete = window.confirm('보드를 삭제하시겠습니까?');
+        if (confirmDelete) {
+            try {
+                console.log(`Deleting board with id: ${boardId}`);
+                const response = await boardApi.deleteBoard(boardId);
+                console.log('Board deleted:', response);
+                navigate(`/${username}/boards`); 
+            } catch (error) {
+                console.error('Failed to delete board:', error);
+            }
         }
     };
 
