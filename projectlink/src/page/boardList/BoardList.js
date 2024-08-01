@@ -86,14 +86,6 @@ const BoardList = () => {
                 </h1>
                 {isEditing}
             </div>
-            <input
-                className="board-list-input"
-                type="text"
-                value={newListTitle}
-                onChange={(e) => setNewListTitle(e.target.value)}
-                placeholder="New list title"
-            />
-            <button onClick={handleCreateList}>Add List</button>
             <BoardListModule ref={boardListRef} boardId={boardId} onCreateList={{ newListTitle, setNewListTitle, handleCreateList }} />
         </div>
     );
