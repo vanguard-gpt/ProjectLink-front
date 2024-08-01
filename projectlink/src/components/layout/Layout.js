@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useParams, useNavigate } from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
 import './Layout.css';
 import logo from '../../assets/logo.png';
+import {boardApi} from '../../api/Api'; 
 
 const Header = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
     const [showLogout, setShowLogout] = useState(false);
@@ -25,21 +26,21 @@ const Header = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
         <header className="board-header">
             <div className="menu">
                 <FiAlignJustify size={30} color="white" onClick={toggleSidebar} />
-                <a href="/" className="logo-img">
+                <Link to={`/${username}/boards`} className="logo-img">
                     <img src={logo} alt="Home" />
-                </a>
+                </Link>
             </div>
             <div className="profile-container">
                 <div onClick={toggleLogout} className="profile-circle">
                     {username.charAt(0).toUpperCase()}
                 </div>
-                {showLogout && <button onClick={handleLogOut} className="logout-button">로그아웃</button>}
+                {showLogout && <button onClick={handleLogOut} className="logout-button">LOGOUT</button>}
             </div>
         </header>
     );
 };
 
-const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal, isDetail }) => {
+const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal, isDetail, handleDeleteBoard, navigateToList, boardId }) => {
     const [activeButton, setActiveButton] = useState(null);
 
     const handleButtonClick = (button) => {
@@ -50,6 +51,10 @@ const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal
             handleShowLikedBoards();
         } else if (button === 'createBoard') {
             openModal();
+        } else if (button === 'deleteBoard') {
+            handleDeleteBoard(boardId);
+        } else if (button === 'navigateToList') {
+            navigateToList();
         }
     };
 
@@ -57,9 +62,8 @@ const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
             {isDetail ? (
                 <div>
-                    {/* 디테일 보드 사이드바 내용 */}
-                    <button>디테일 보드 내용 1</button>
-                    <button>디테일 보드 내용 2</button>
+                    <button onClick={() => handleButtonClick('deleteBoard')}>Delete Board</button>
+                    <button onClick={() => handleButtonClick('navigateToList')}>List View</button>
                 </div>
             ) : (
                 <div>
@@ -67,19 +71,19 @@ const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal
                         className={activeButton === 'allBoards' ? 'active' : ''}
                         onClick={() => handleButtonClick('allBoards')}
                     >
-                        모든 보드 보기
+                        All Boards
                     </button>
                     <button
                         className={activeButton === 'likedBoards' ? 'active' : ''}
                         onClick={() => handleButtonClick('likedBoards')}
                     >
-                        북마크한 보드
+                        Bookmark List
                     </button>
                     <button
                         className={activeButton === 'createBoard' ? 'active' : ''}
                         onClick={() => handleButtonClick('createBoard')}
                     >
-                        보드 생성
+                        Create Board
                     </button>
                 </div>
             )}
@@ -88,10 +92,27 @@ const Sidebar = ({ isOpen, handleShowLikedBoards, handleShowAllBoards, openModal
 };
 
 const Layout = ({ isDetail = false }) => {
-    const { username } = useParams();
+    const { username, boardId } = useParams();
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [showLikedBoards, setShowLikedBoards] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showAllBoards, setShowAllBoards] = useState(true);
+    const navigate = useNavigate();
+
+    const handleDeleteBoard = async (boardId) => {
+        try {
+            console.log(`Deleting board with id: ${boardId}`);
+            const response = await boardApi.deleteBoard(boardId);
+            console.log('Board deleted:', response);
+            navigate(`/${username}/boards`); 
+        } catch (error) {
+            console.error('Failed to delete board:', error);
+        }
+    };
+
+    const navigateToList = () => {
+        navigate(`/${username}/boards`);
+    };
 
     return (
         <div className={`layout-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
@@ -102,13 +123,22 @@ const Layout = ({ isDetail = false }) => {
             />
             <Sidebar 
                 isOpen={isSidebarOpen} 
-                handleShowLikedBoards={() => setShowLikedBoards(true)} 
-                handleShowAllBoards={() => setShowLikedBoards(false)} 
+                handleShowLikedBoards={() => {
+                    setShowLikedBoards(true);
+                    setShowAllBoards(false);
+                }} 
+                handleShowAllBoards={() => {
+                    setShowLikedBoards(false);
+                    setShowAllBoards(true);
+                }} 
                 openModal={() => setIsModalOpen(true)} 
                 isDetail={isDetail}
+                handleDeleteBoard={handleDeleteBoard}
+                navigateToList={navigateToList}
+                boardId={boardId}
             />
             <div className="layout-content">
-                <Outlet context={[showLikedBoards, setShowLikedBoards, isModalOpen, setIsModalOpen]} />
+                <Outlet context={[showLikedBoards, setShowLikedBoards, isModalOpen, setIsModalOpen, showAllBoards, setShowAllBoards]} />
             </div>
         </div>
     );
