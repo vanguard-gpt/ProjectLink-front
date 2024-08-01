@@ -4,7 +4,11 @@ import './BoardCard.css';
 import { IoIosStarOutline } from "react-icons/io";
 import { IoMdStar } from "react-icons/io";
 
-const BoardCard = ({ board, onLikeToggle, liked, onViewBoard }) => {
+const removeQuotes = (str) => {
+    return str.replace(/['"]/g, '');
+};
+
+const BoardCard = ({ boardName, board, onLikeToggle, liked, onViewBoard }) => {
     const navigate = useNavigate();
     const { username } = useParams();
 
@@ -24,7 +28,7 @@ const BoardCard = ({ board, onLikeToggle, liked, onViewBoard }) => {
 
     return (
         <div className="board-card" onClick={handleCardClick}>
-            <h3>{board.boardName}</h3>
+            <h3>{removeQuotes(boardName)}</h3>
             {board.backgroundThumbnail ? (
                 <div className="board-background" style={{ backgroundImage: `url(${board.backgroundThumbnail})` }}>
                     <img src={board.backgroundThumbnail} alt="Background" className="board-background-image" />
@@ -40,4 +44,3 @@ const BoardCard = ({ board, onLikeToggle, liked, onViewBoard }) => {
 };
 
 export default BoardCard;
-

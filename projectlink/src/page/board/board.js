@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useOutletContext } from 'react-router-dom';
-import BoardList from './BoardCardList'; 
+import BoardCardList from './BoardCardList'; 
 import './Board.css';
 import CreateBoardModal from '../../components/modal/CreateBoardModal';
 import { userApi, boardApi } from '../../api/Api';
@@ -143,10 +143,10 @@ const Board = () => {
     return (
         <div className="board-container">
             <div className="board-content">
-            {showAllBoards && !showLikedBoards && (
+                {showAllBoards && !showLikedBoards && (
                     <>
                         <h2>최근 리스트</h2>
-                        <BoardList
+                        <BoardCardList
                             boards={getRecentBoards()}
                             onLikeToggle={handleLikeToggle}
                             likedBoards={likedBoards}
@@ -157,7 +157,7 @@ const Board = () => {
                 {showAllBoards && (
                     <>
                         <h2>모든 리스트</h2>
-                        <BoardList
+                        <BoardCardList
                             boards={boards}
                             onLikeToggle={handleLikeToggle}
                             likedBoards={likedBoards}
@@ -168,7 +168,7 @@ const Board = () => {
                 {showLikedBoards && (
                     <>
                         <h2>북마크 리스트</h2>
-                        <BoardList
+                        <BoardCardList
                             boards={getLikedBoards()}
                             onLikeToggle={handleLikeToggle}
                             likedBoards={likedBoards}
