@@ -1,17 +1,10 @@
 .board-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px; 
+    gap: 20px; 
     justify-content: flex-start;
-    margin-bottom: 30px;
 }
 
 .board-content {
-    padding: 0px 30px; 
-}
-
-h2 {
-    font-weight: 500;
-    padding-top: 16px;
-    margin-bottom: 14px;
+    padding: 20px; 
 }
