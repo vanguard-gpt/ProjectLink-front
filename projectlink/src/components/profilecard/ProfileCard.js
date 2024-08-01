@@ -22,10 +22,10 @@ const ProfileCardList = () => {
         <div className="profile-container">
             <div className="profile-title">Us.</div>
             <div className="profile-cards">
-                <ProfileCard name="김승연" image={sy} role="역할" />
-                <ProfileCard name="김시우" image={sw} role="역할" />
-                <ProfileCard name="곽민정" image={mj} role="역할" />
-                <ProfileCard name="권지민" image={kjm} role="역할" />
+                <ProfileCard name="김승연" image={sy} role="Team Leader + Frontend" />
+                <ProfileCard name="김시우" image={sw} role="Backend + PM" />
+                <ProfileCard name="곽민정" image={mj} role="UI/UX Design + Frontend" />
+                <ProfileCard name="권지민" image={kjm} role="Frontend" />
             </div>
         </div>
     );
