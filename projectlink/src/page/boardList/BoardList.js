@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './BoardList.css';
 import BoardListModule from './BoardListModule';
-import { boardApi } from '../../api/Api';
+import { boardApi } from '../../api/api';
 
 const BoardList = () => {
     const boardListRef = useRef();

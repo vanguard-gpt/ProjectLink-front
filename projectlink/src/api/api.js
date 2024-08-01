@@ -1,4 +1,5 @@
 import instance from './axiosInstance';
+import fileInstance from './fileInstance';
 
 export const labelApi = {
     updateLabel: (labelData) => instance.put("/api/v1/cards/labels", labelData),
@@ -40,12 +41,52 @@ export const userApi = {
 };
 
 export const boardApi = {
-    
     getBoardById: (boardId) => instance.get(`/api/v1/boards/${boardId}`),
     viewStateBoard: (boardId, username, order) => instance.post(`/api/v1/boards/${boardId}`, { username, order }),
     updateBoard: (boardId, updatedBoard) => instance.patch(`/api/v1/boards/${boardId}`, updatedBoard),
     createBoard: (boardData) => instance.post(`/api/v1/boards`, boardData),
     deleteBoard: (boardId) => instance.delete(`/api/v1/boards/${boardId}`),
     getAllBoards: () => instance.get("/api/v1/boards"),
+};
+
+export const fileApi = {
+    uploadFiles: async (formData, cardId) => {
+        try {
+            const response = await fileInstance.post(`/api/v1/cardfiles/upload/${cardId}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Expect': 'false'
+                }
+            });
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    },
+    getFilesByCardId: async (cardId) => {
+        try {
+            const response = await fileInstance.get(`/api/v1/cardfiles/card/${cardId}/files`);
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    },
+    downloadFile: async (fileId) => {
+        try {
+            const response = await fileInstance.get(`/api/v1/cardfiles/${fileId}`, {
+                responseType: 'blob',
+            });
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    },
+    deleteFile: async (fileId) => {
+        try {
+            await fileInstance.delete(`/api/v1/cardfiles/${fileId}`);
+        } catch (error) {
+            throw error;
+        }
+    },
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './List.css';
 import ListCard from './ListCard';
-import { cardApi } from '../api/Api';
+import { cardApi } from '../api/api';
 import ListMenu from './ListMenu';
 
 const List = ({ list, handleDeleteList, handleCreateCard, handleDeleteCard, handleRenameList, updateCardInList }) => {

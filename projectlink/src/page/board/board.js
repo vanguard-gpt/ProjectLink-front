@@ -3,7 +3,7 @@ import { useParams, useOutletContext } from 'react-router-dom';
 import BoardList from './BoardCardList'; 
 import './Board.css';
 import CreateBoardModal from '../../components/modal/CreateBoardModal';
-import { userApi, boardApi } from '../../api/Api';
+import { userApi, boardApi } from '../../api/api';
 
 const Board = () => {
     const { username } = useParams();

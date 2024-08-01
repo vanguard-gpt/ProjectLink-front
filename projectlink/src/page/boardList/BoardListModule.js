@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import { cardApi, boardListApi } from '../../api/Api';
+import { cardApi, boardListApi } from '../../api/api';
 import { Plus } from 'react-feather';
 import List from '../../components/List';
 

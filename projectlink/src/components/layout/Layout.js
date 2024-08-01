@@ -3,7 +3,7 @@ import { Link, Outlet, useParams, useNavigate } from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
 import './Layout.css';
 import logo from '../../assets/logo.png';
-import {boardApi} from '../../api/Api'; 
+import {boardApi} from '../../api/api'; 
 
 const Header = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
     const [showLogout, setShowLogout] = useState(false);
